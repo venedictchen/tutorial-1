@@ -8,7 +8,7 @@
 
 - Pada module pekan ini, saya mendapatkan pelajaran untuk dapat mengimplementasikan clean code. Pada awalnya, saya mengira clean code hanya memperhatikan kerapian code dengan indentasi dan rapi. 
 
-- Setelah saya mempelajari modul ini, saya mendapatkan pelajaran bahwa clean code dimulai dari penamaan, setiap function harus memiliki tugasnya masing-masing dan jelas, comment secukupnya, objects dan structure, dan error handling.
+- Setelah saya mempelajari modul ini, saya mendapatkan pelajaran bahwa clean code dimulai dari penamaan, setiap function harus memiliki tugasnya masing-masing dan jelas, comment menjelaskan secukupnya, objects dan structure, dan error handling. Saya juga mempelajari cara melakukan branching untuk git flow, saya menggunakan branching jenis feature branch workflow.
 
 - Hal yang bisa dikembangkan dari code saya adalah bagian error handling, autentikasi, serta autorisasi. Menurut saya, untuk code saya masih belum mencakup error handling sepenuhnya. Untuk akses pengguna juga masih belum diimplementasikan, baik secara autentikasi maupun autorisasi.
 
