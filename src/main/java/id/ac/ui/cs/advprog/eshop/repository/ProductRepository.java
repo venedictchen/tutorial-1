@@ -32,6 +32,7 @@ public class ProductRepository {
                 return product;
             }
         }
+        return null;
     }
 
     public void update(Product productUpdate){
