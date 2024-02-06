@@ -2,16 +2,17 @@ package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import id.ac.ui.cs.advprog.eshop.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @Controller
-
 
 public class ProductController {
     @Autowired
@@ -25,7 +26,10 @@ public class ProductController {
     }
 
     @PostMapping("/product/create")
-    public String createProductPost(@ModelAttribute Product product,Model model){
+    public String createProductPost(@Valid @ModelAttribute Product product, BindingResult bindingResult, Model model){
+        if(bindingResult.hasErrors()){
+            return "CreateProduct";
+        }
         service.create(product);
         return "redirect:list";
     }
@@ -50,8 +54,11 @@ public class ProductController {
         return "EditProduct";
     }
 
-    @PutMapping(value="/product/edit/{productId}")
-    public String editProduct(@ModelAttribute Product productUpdate){
+    @PutMapping("/product/edit/{productId}")
+    public String editProduct(@Valid @ModelAttribute Product productUpdate, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "EditProduct";
+        }
         service.update(productUpdate);
         return "redirect:/product/list";
     }
