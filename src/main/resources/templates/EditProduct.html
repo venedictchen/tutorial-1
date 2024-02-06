@@ -19,7 +19,7 @@
     <form th:action="@{/product/edit/{id}(id=${product.productId})}" th:object="${product}" th:method="put">
         <div class="form-group">
             <label for="nameInput">Name</label>
-            <input th:field="*{productName}" type="text" class="form-control mb-4 col-4" id="nameInput" placeholder="Enter product' name">
+            <input th:field="*{productName}" type="text" class="form-control mb-4 col-4" id="nameInput">
         </div>
         <div class="form-group">
             <label for="quantityInput">Quantity</label>

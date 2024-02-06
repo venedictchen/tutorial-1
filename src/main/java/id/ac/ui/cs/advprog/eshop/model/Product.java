@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 
+import java.util.UUID;
+
 @Getter @Setter
 
 public class Product{
@@ -14,4 +16,7 @@ public class Product{
     private String productName;
     @Min(value = 0,message="Quantity must positive or cannot be alphabet")
     private int productQuantity;
+    public Product(){
+        this.productId = UUID.randomUUID().toString();
+    }
 }
