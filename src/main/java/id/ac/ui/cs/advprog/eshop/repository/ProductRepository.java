@@ -15,7 +15,7 @@ public class ProductRepository {
     public Product create(Product product){
         product.setProductId(UUID.randomUUID().toString());
         productData.add(product);
-        return  product;
+        return product;
     }
 
     public Iterator<Product> findAll(){
