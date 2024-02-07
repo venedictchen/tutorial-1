@@ -33,10 +33,10 @@ class CreateProductFunctionalTest {
 
     @Test
     void pageTitle_isCorrect(ChromeDriver driver) throws Exception{
-        driver.get(baseUrl+"/product/list");
+        driver.get(baseUrl+"/product/create");
         String pageTitle  = driver.getTitle();
 
-        assertEquals("Create Product",pageTitle);
+        assertEquals("Create New Product",pageTitle);
     }
 
     @Test

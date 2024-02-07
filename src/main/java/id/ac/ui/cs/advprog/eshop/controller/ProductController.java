@@ -54,10 +54,11 @@ public class ProductController {
     }
 
     @PutMapping("/product/edit/{productId}")
-    public String editProduct(@Valid @ModelAttribute Product productUpdate, BindingResult bindingResult){
+    public String editProduct(@Valid @ModelAttribute Product productUpdate, BindingResult bindingResult,@PathVariable String productId){
         if(bindingResult.hasErrors()){
             return "EditProduct";
         }
+        productUpdate.setProductId(productId);
         service.update(productUpdate);
         return "redirect:/product/list";
     }
