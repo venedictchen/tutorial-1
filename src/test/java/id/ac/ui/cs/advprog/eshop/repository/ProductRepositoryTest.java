@@ -141,5 +141,17 @@ class ProductRepositoryTest {
         assertFalse(productIterator.hasNext());
 
     }
+    @Test
+    void testUpdateNullProduct() {
+        assertFalse(productRepository.update(null));
+    }
+    @Test
+    void testDeleteEmptyProductId() {
+        assertFalse(productRepository.delete(""));
+    }
 
+    @Test
+    void testDeleteBlankProductId() {
+        assertFalse(productRepository.delete("   "));
+    }
 }
