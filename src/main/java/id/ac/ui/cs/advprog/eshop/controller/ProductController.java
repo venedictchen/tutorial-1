@@ -63,6 +63,7 @@ public class ProductController {
         if(bindingResult.hasErrors()){
             return "EditProduct";
         }
+
         productUpdate.setProductId(productId);
         service.update(productUpdate);
         return "redirect:/product/list";
