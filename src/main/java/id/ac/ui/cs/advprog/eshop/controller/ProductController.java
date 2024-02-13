@@ -30,10 +30,7 @@ public class ProductController {
     }
 
     @PostMapping("/product/create")
-    public String createProductPost(@Valid @ModelAttribute Product product, BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors()){
-            return "CreateProduct";
-        }
+    public String createProductPost(@ModelAttribute Product product, Model model){
         service.create(product);
         return "redirect:list";
     }
@@ -59,11 +56,7 @@ public class ProductController {
     }
 
     @PutMapping("/product/edit/{productId}")
-    public String editProduct(@Valid @ModelAttribute Product productUpdate, BindingResult bindingResult,@PathVariable String productId){
-        if(bindingResult.hasErrors()){
-            return "EditProduct";
-        }
-
+    public String editProduct(@ModelAttribute Product productUpdate,@PathVariable String productId){
         productUpdate.setProductId(productId);
         service.update(productUpdate);
         return "redirect:/product/list";
