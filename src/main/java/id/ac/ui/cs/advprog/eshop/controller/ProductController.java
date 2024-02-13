@@ -18,7 +18,7 @@ public class ProductController {
     private ProductService service;
 
     @GetMapping("")
-    public String HomePage(){
+    public String homePage(){
         return "HomePage";
     }
 
