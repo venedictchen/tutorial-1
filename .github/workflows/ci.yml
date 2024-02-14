@@ -21,11 +21,3 @@ jobs:
         run : chmod +x ./gradlew
       - name : Run unit tests
         run: ./gradlew test
-#      - name: Upload reports
-#        if: failure()
-#        uses: actions/upload-artifact@v3
-#        with:
-#            name: reports
-#            path: |
-#                **/build/reports/
-#                **/build/test-results/
