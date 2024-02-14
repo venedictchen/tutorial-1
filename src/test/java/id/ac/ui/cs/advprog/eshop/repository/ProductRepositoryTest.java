@@ -154,4 +154,20 @@ class ProductRepositoryTest {
     void testDeleteBlankProductId() {
         assertFalse(productRepository.delete("   "));
     }
+
+    @Test
+    void testGetFound(){
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        productRepository.create(product);
+        assertTrue(productRepository.get("eb558e9f-1c39-460e-8860-71af6af63bd6")!=null);
+    }
+
+    @Test
+    void testGetNotFound(){
+        Product product = new Product();
+        product.setProductId("a0f9de45-90b1-437d-a0bf-d0821dde9096");
+        productRepository.create(product);
+        assertFalse(productRepository.get("eb558e9f-1c39-460e-8860-71af6af63bd6")!=null);
+    }
 }
