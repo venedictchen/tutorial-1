@@ -4,6 +4,8 @@ plugins {
     id("org.springframework.boot") version "3.2.2"
     id("io.spring.dependency-management") version "1.1.4"
     id("org.sonarqube") version "4.4.1.3373"
+    id("jacoco")
+
 }
 
 group = "id.ac.ui.cs.advprog"
@@ -29,6 +31,11 @@ sonar {
         property("sonar.organization", "venedictchen")
         property("sonar.host.url", "https://sonarcloud.io")
     }
+}
+
+jacoco{
+    toolVersion = "0.8.11"
+    reportsDirectory = layout.buildDirectory.dir("customJacocoReportDir")
 }
 
 val seleniumJavaVersion = "4.14.1"
@@ -85,5 +92,6 @@ tasks.jacocoTestReport{
     reports {
         html.required = true
         xml.required = true
+        html.outputLocation = layout.buildDirectory.dir("jacocoHtml")
     }
 }
