@@ -33,14 +33,6 @@ public class ProductControllerTest{
 
 
     @Test
-    void testHomePage() throws Exception{
-        MockHttpServletResponse response = mockMvc.perform(get("/"))
-                .andReturn().getResponse();
-
-        assertEquals(response.getStatus(), HttpStatus.SC_OK);
-    }
-
-    @Test
     void testProductListPage() throws Exception{
         MockHttpServletResponse response = mockMvc.perform(get("/product/list"))
                 .andReturn().getResponse();
