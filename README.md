@@ -1,10 +1,8 @@
 # Advanced Programming EShop
-
-https://tutorial-1-eshop-venedictchen.koyeb.app
-
 # Navigation List
 - [module 1](#module-1)
 - [module 2](#module-2)
+- [module 3](#module-3)
 # Reflection :relieved:
 
 ## Module 1
@@ -41,3 +39,29 @@ https://tutorial-1-eshop-venedictchen.koyeb.app
 - Lalu, saya juga menambahkan beberapa test untuk coverage 100% saat `./gradlew test`, terutama di bagian service dan controller karena modul sebelumnya belum mengcover bagian itu. Saya juga ada menambahkan `<caption>` untuk table karena menjadi bug issue di sonarcloud ketika analyze.
 
 - Menurut saya implementasi CI/CD workflow saya sudah mengikuti definisi Continuous Integration and Continuous Deployment. Code saya akan melalui proses yang berkelanjutan sesuai definisi CI/CD. Kode ini akan secara otomatis secara Continuous Integration menggunakan Github Actions. Kode akan dilakukan pengecekan dan analisis secara otomotasi menggunakan Scorecard dan Sonarcloud. Untuk Continuous Deployment sendiri saya sudah menggunakan koyeb sebagai PaaS untuk CD nya. Jadi untuk setiap perubahan akan dilakukan proses ini. Oleh karena itu, saya merasa kode saya sudah menerapkan implementasi CI/CD workflow.
+
+## Module 3
+- Explain what principles you apply to your project!
+    - S (Single Responsibility Principle)
+        - Pertama, pada bagian `ProductController` awalnya saya meletakkan bagian `homePage()` pada `ProductController`. Ini tidak menerapkan SRP karena `homePage` seharusnya memiliki tanggung jawab tersendiri untuk halaman home yang berbeda fungsionalitas . Oleh karena itu saya membuat class baru `HomeController`
+        - Kedua, pada bagian `ProductController` terdapat class `CarController` yang extends `ProductController`.`CarController` seharusnya dipisah menjadi bagian tersendiri karena `CarController` seharusnya memiliki tanggung jawab tersendiri untuk halaman car yang berbeda fungsionalitas.
+
+    - L (Liskov Substitution Principle)
+        - Pada code saya, awalnya `CarController` merupakan subclass `ProductController`. Namun, kedua hal ini berbeda fungsi dan `CarController` tidak dapat menggantikan `ProductController`. Oleh karena itu, saya pisah menjadi dua class yang berbeda.
+
+    - I (Interface segregation Principle)
+        - Dengan memisahkan implementasi `CarService` dan `ProductService`, kita dapat memenuhi prinsip ini, yang mana setiap interface memenuhi tanggung jawab nya masing-masing sesuai klien tertentu.
+
+    - D (Dependency Inversions Principle)
+        - Pada bagian `CarController` terdapat `private CarServiceImpl carService`. Berdasarkan prinsip DIP seharusnya saya bergantung pada level sebuah interface atau fungsi abstrak dibandingkan level class atau function yang concrete. Oleh karena itu, saya ubah menjadi `private CarService carService` yang bergantung pada interface.
+
+-  Explain the advantages of applying SOLID principles to your project with examples.
+    - Dengan menerapkan prinsip SOLID code kita dapat lebih mudah di maintain. Contohnya, dengan prinsip SRP, kita tahu bahwa setiap kelas memiliki tanggung jawabnya masing-masing.
+    - Code kita lebih mudah untuk diuji dan bug yang muncul dapat lebih mudah dicek karena menerapkan prinsip DIP dan SRP. Contohnya, kita dapat membuat tes unit yang fokus pada satu tanggung jawab kelas atau metode tertentu. Dalam contoh ini, kita dapat membuat tes unit khusus untuk `createProductPost` tanpa harus mempertimbangkan detail implementasi atau logika bisnis lain yang mungkin ada dalam ProductService.
+    - Code kita jadi lebih mudah dibaca dan dipahami. Dengan memecah method-method menjadi beberapa bagian yang memiliki tanggung jawab sendiri, orang lain dan kita sendiri akan lebih mudah memahami saat akan membaca di kemudian hari.
+    - Dengan menerapkan SOLID, code kita juga akan lebih mudah ditambah fitur baru tanpa menyebabkan adanya bug baru di bagian lainnya.
+
+-  Explain the disadvantages of not applying SOLID principles to your project with examples.
+    - Apabila tidak menerapkan prinsip solid, code kita akan lebih susah untuk dijaga karena code sangat complex dan susah dipahami. Contohnya, ketika kita tidak menerapkan SRP, maka kita akan kebingungan terkait fungsi code tersebut karena adanya hubungan dengan method lain.
+    - Code kita akan lebih susah diuji karena tiap fungsionalitas tidak independen yang menyebabkan proses pencarian bug akan sulit karena banyaknya bagian yang terlibat. Contohnya, kita ingin test suatu fungsi di `CarController`. Namun dengan bergantungnya pada fungsi lain kita akan kebingungan mencari bagian mana yang menyebabkan bug.
+    - Penambahan fitur baru akan lebih sulit karena ada kemungkinan kita dapat memunculkan bug baru yang disebabkan bagian lain. Hal ini tentunya akan menjadi kesulitan saat ingin menelusuri bagian yang mana menyebabkan fitur tidak berjalan. 
