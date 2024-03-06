@@ -1,5 +1,6 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,8 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PaymentTest {
+public class PaymentBankTest {
     List<Payment> payments;
 
     List<Order> orders;
@@ -40,35 +42,36 @@ public class PaymentTest {
         orders.add(order2);
         orders.add(order3);
     }
+
     @Test
-    void testCreatePaymentSucessfulVoucher(){
-        Map<String, String> paymentDataVoucher = new  HashMap<>();
-        paymentDataVoucher.put("voucherCode", "ESHOP00000000AAA");
-        Payment payment1 = new Payment("13652556-012a-4c07-b546-54eb1396d79b",orders.get(1),
-                "", paymentDataVoucher);
-        assertSame(this.orders.get(1), payment1.getOrder());
-        assertNull(payment1.getPaymentData());
-        assertEquals("13652556-012a-4c07-b546-54eb1396d79b", payment1.getId());
-        assertEquals("", payment1.getMethod());
+    void testCreatePaymentBankSuccess(){
+        Map<String, String> paymentDataBank = new HashMap<>();
+        paymentDataBank.put("bankName", "a");
+        paymentDataBank.put("referenceCode", "0");
+        Payment payment1 = new PaymentBank("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",orders.get(0), "BANK", paymentDataBank);
+        assertSame(this.orders.get(0), payment1.getOrder());
+        assertEquals(paymentDataBank, payment1.getPaymentData());
+        assertEquals("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa", payment1.getId());
+        assertEquals(PaymentMethod.BANK.getValue(), payment1.getMethod());
+
     }
 
     @Test
-    void testCreatePaymentIsVoucherFail(){
-        Map<String, String> paymentDataVoucher = new  HashMap<>();
-        paymentDataVoucher.put("voucherCode", "ESHOP00000000AAA");
-        assertThrows(IllegalArgumentException.class, ()-> {
-            new Payment("13652556-012a-4c07-b546-54eb1396d79b",orders.get(1),
-                "VOUCHER", paymentDataVoucher);
+    void testCreatePaymentFailBankName(){
+        Map<String, String> paymentDataBank = new HashMap<>();
+        paymentDataBank.put("bankName", "");
+        paymentDataBank.put("referenceCode", "0");
+        assertThrows(IllegalArgumentException.class, ()-> {new PaymentBank("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",orders.get(1),
+                "BANK", paymentDataBank);
         });
     }
 
     @Test
-    void testCreatePaymentIsBankFail(){
+    void testCreatePaymentFailReferenceCode(){
         Map<String, String> paymentDataBank = new  HashMap<>();
         paymentDataBank.put("bankName", "a");
-        paymentDataBank.put("referenceCode", "0");
-        assertThrows(IllegalArgumentException.class, ()-> {
-            new Payment("13652556-012a-4c07-b546-54eb1396d79b",orders.get(1),
+        paymentDataBank.put("referenceCode", "");
+        assertThrows(IllegalArgumentException.class, ()-> {new PaymentBank("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",orders.get(1),
                 "BANK", paymentDataBank);
         });
     }

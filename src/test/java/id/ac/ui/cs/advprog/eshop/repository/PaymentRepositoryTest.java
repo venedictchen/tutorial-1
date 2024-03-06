@@ -3,6 +3,7 @@ package id.ac.ui.cs.advprog.eshop.repository;
 import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import id.ac.ui.cs.advprog.eshop.model.Order;
 import id.ac.ui.cs.advprog.eshop.model.Payment;
+import id.ac.ui.cs.advprog.eshop.model.PaymentVoucher;
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,6 +45,18 @@ public class PaymentRepositoryTest {
                 "", null);
         payments.add(payment1);
         payments.add(payment2);
+        Map<String, String> paymentDataVoucher = new HashMap<>();
+        paymentDataVoucher.put("voucherCode", "ESHOP00000000AAA");
+        Payment paymentBaru = new PaymentVoucher("a2e7e7e7-9a7f-4603-92c2-eaf529271cc2",orders.get(0),
+                "VOUCHER", paymentDataVoucher);
+        payments.add(paymentBaru);
+
+        Map<String, String> paymentDataBank = new HashMap<>();
+        paymentDataBank.put("bankName", "BCA");
+        paymentDataBank.put("referenceCode","0");
+        Payment paymentBaru2 = new PaymentBank("a2e7e7e7-9a7f-4603-92c2-eaf529271cc2a",orders.get(0),
+                "BANK", paymentDataBank);
+        payments.add(paymentBaru2);
     }
     @Test
     void testAddPaymentVoucherSuccess(){
