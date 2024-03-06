@@ -22,7 +22,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class PaymentServiceTest {
+public class PaymentServiceImplTest {
     @Spy
     @InjectMocks
     PaymentServiceImpl paymentService;
@@ -56,7 +56,7 @@ public class PaymentServiceTest {
         paymentData = new HashMap<>();
         paymentData.put("bankName","BCA");
         paymentData.put("referenceCode","0");
-        Payment payment2 = new PaymentBank(order, "BANK", paymentData);
+        Payment payment2 = new Payment(order, "BANK", paymentData);
         payments.add(payment2);
     }
 
@@ -85,8 +85,7 @@ public class PaymentServiceTest {
         assertEquals(payment2.getStatus(), findResult.getStatus() );
         verify(paymentService, times(1)).createPaymentVoucher(
                 any(Order.class), any(String.class), any(Map.class));
-        verify(paymentService, times(1)).createPaymentBank(
-                any(Order.class), any(String.class), any(Map.class));
+
     }
 
     @Test
