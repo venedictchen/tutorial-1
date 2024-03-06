@@ -1,6 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.service;
 
 import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
 import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import id.ac.ui.cs.advprog.eshop.model.*;
 import id.ac.ui.cs.advprog.eshop.repository.PaymentRepository;
@@ -54,9 +55,9 @@ public class PaymentServiceImplTest {
                 "VOUCHER", paymentData );
         payments.add(payment1);
         paymentData = new HashMap<>();
-        paymentData.put("bankName","BCA");
+        paymentData.put("bankName","a");
         paymentData.put("referenceCode","0");
-        Payment payment2 = new Payment(order, "BANK", paymentData);
+        Payment payment2 = new PaymentBank(order, "BANK", paymentData);
         payments.add(payment2);
     }
 
@@ -83,10 +84,8 @@ public class PaymentServiceImplTest {
         assertEquals(payment2.getId(),findResult.getId() );
         assertEquals(payment2.getMethod(), findResult.getMethod() );
         assertEquals(payment2.getStatus(), findResult.getStatus() );
-        verify(paymentService, times(1)).createPaymentVoucher(
-                any(Order.class), any(String.class), any(Map.class));
-        verify(paymentService, times(1)).createPaymentBank(
-                any(Order.class), any(String.class), any(Map.class));
+        verify(paymentService, times(1)).createPaymentVoucher(any(Order.class), any(String.class), any(Map.class));
+        verify(paymentService, times(1)).createPaymentBank(any(Order.class), any(String.class), any(Map.class));
     }
 
     @Test
@@ -110,7 +109,7 @@ public class PaymentServiceImplTest {
 
         Payment payment1 = payments.get(0);
         assertThrows(IllegalArgumentException.class, ()->
-                paymentService.setStatus(payment1, "wowow")
+                paymentService.setStatus(payment1, "wder")
         );
     }
 
