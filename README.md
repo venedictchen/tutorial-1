@@ -3,6 +3,7 @@
 - [module 1](#module-1)
 - [module 2](#module-2)
 - [module 3](#module-3)
+- [module 4](#module-4)
 # Reflection :relieved:
 
 ## Module 1
@@ -64,4 +65,17 @@
 -  Explain the disadvantages of not applying SOLID principles to your project with examples.
     - Apabila tidak menerapkan prinsip solid, code kita akan lebih susah untuk dijaga karena code sangat complex dan susah dipahami. Contohnya, ketika kita tidak menerapkan SRP, maka kita akan kebingungan terkait fungsi code tersebut karena adanya hubungan dengan method lain.
     - Code kita akan lebih susah diuji karena tiap fungsionalitas tidak independen yang menyebabkan proses pencarian bug akan sulit karena banyaknya bagian yang terlibat. Contohnya, kita ingin test suatu fungsi di `CarController`. Namun dengan bergantungnya pada fungsi lain kita akan kebingungan mencari bagian mana yang menyebabkan bug.
-    - Penambahan fitur baru akan lebih sulit karena ada kemungkinan kita dapat memunculkan bug baru yang disebabkan bagian lain. Hal ini tentunya akan menjadi kesulitan saat ingin menelusuri bagian yang mana menyebabkan fitur tidak berjalan. 
+    - Penambahan fitur baru akan lebih sulit karena ada kemungkinan kita dapat memunculkan bug baru yang disebabkan bagian lain. Hal ini tentunya akan menjadi kesulitan saat ingin menelusuri bagian yang mana kembali.
+
+## Module 4
+1. Reflect based on Percival (2017) proposed self-reflective questions (in “Principles and Best Practice of Testing” submodule, chapter “Evaluating Your Testing Objectives”), whether this TDD flow is useful enough for you or not. If not, explain things that you need to do next time you make more tests.
+- Menurut saya, dengan penerapan TDD flow pengerjaan jadi lebih jelas dan cepat. Dengan membuat test terlebih dahulu, maka saat kita implementasi kita sudah benar-benar bisa memastikan dan memaintain kebenaran code kita.
+
+2. You have created unit tests in Tutorial. Now reflect whether your tests have successfully followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you create more tests.
+
+- Menurut saya, code saya sudah mengimplementasikan F.I.R.S.T
+    - Fast: Karena sudah membuat testing dengan efisien.
+    - Isolated: Tes berdiri tidak bergantung pada tes yang lain.
+    - Repeatable: Tes dapat diulang dengan hasil yang konsisten.
+    - Self-validating: Tes memberikan hasil pass atau fail melalui asersi tanpa intervensi manual.
+    - Timely: Tes dibuat sebelum implementasi kode.
