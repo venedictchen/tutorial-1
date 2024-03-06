@@ -48,10 +48,11 @@ public class PaymentBankTest {
         Map<String, String> paymentDataBank = new HashMap<>();
         paymentDataBank.put("bankName", "a");
         paymentDataBank.put("referenceCode", "0");
-        Payment payment1 = new PaymentBank("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",orders.get(0), "BANK", paymentDataBank);
+        Payment payment1 = new PaymentBank(
+                "wwwwwwww-wwww-wwww-wwww-wwwwwwwwwwww",orders.get(0), "BANK", paymentDataBank);
         assertSame(this.orders.get(0), payment1.getOrder());
         assertEquals(paymentDataBank, payment1.getPaymentData());
-        assertEquals("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa", payment1.getId());
+        assertEquals("wwwwwwww-wwww-wwww-wwww-wwwwwwwwwwww", payment1.getId());
         assertEquals(PaymentMethod.BANK.getValue(), payment1.getMethod());
 
     }
@@ -61,7 +62,8 @@ public class PaymentBankTest {
         Map<String, String> paymentDataBank = new HashMap<>();
         paymentDataBank.put("bankName", "");
         paymentDataBank.put("referenceCode", "0");
-        assertThrows(IllegalArgumentException.class, ()-> {new PaymentBank("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",orders.get(1),
+        assertThrows(IllegalArgumentException.class, ()-> {new PaymentBank(
+                "wwwwwwww-wwww-wwww-wwww-wwwwwwwwwwww",orders.get(1),
                 "BANK", paymentDataBank);
         });
     }
@@ -71,7 +73,8 @@ public class PaymentBankTest {
         Map<String, String> paymentDataBank = new  HashMap<>();
         paymentDataBank.put("bankName", "a");
         paymentDataBank.put("referenceCode", "");
-        assertThrows(IllegalArgumentException.class, ()-> {new PaymentBank("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",orders.get(1),
+        assertThrows(IllegalArgumentException.class, ()-> {new PaymentBank(
+                "wwwwwwww-wwww-wwww-wwww-wwwwwwwwwwwwa",orders.get(1),
                 "BANK", paymentDataBank);
         });
     }
